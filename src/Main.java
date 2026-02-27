@@ -1,5 +1,4 @@
 import TaskCode.*;
-
 import java.util.*;
 
 public class Main {
@@ -19,6 +18,8 @@ public class Main {
             return o1.title.compareTo(o2.title);
         }
     };
+
+    static HashMap<String,Integer> tasksHashMap = new HashMap<>();
 
 //Мастер, клиент, персон ооп, персон(имя, id, money)->мастер(несколько задач),клиент(одна задача/несколько, )
 //UTILS HashSetMap
@@ -46,9 +47,15 @@ public class Main {
             }
         }*/
 
+
         Master m1 = new Master("Maestro");
-        Client c1 = new Client("Clint", new Task("Project",6));
-        Util.ExecuteOrder(c1,m1);
+        Client c1 = new Client("Clint", new Task("NewClear Project",5));
+        Client c2 = new Client("Clinton", new Task("Unigue Project",6));
+        tasksHashMap.put(c1.getTaskTitle(),c1.getTaskPrice());
+        tasksHashMap.put(c2.getTaskTitle(),c2.getTaskPrice());
+        System.out.println(tasksHashMap.toString());
+        UtilPaymentClass.ExecuteOrder(c1,m1);
+        UtilPaymentClass.ExecuteOrder(c2,m1);
     }
 
     static void CreateSubTask(Task t1, int ID) {

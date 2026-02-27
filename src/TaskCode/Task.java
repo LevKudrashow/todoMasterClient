@@ -28,7 +28,6 @@ public final class Task extends SubTask{
     {
         this.subTasks.get(subtaskID).setStatus(status);
         money+=this.subTasks.get(subtaskID).getMoney();
-        System.out.println("Main task: "+this.money);
         this.status=CheckAllSubs();
     }
     
@@ -108,11 +107,20 @@ public final class Task extends SubTask{
             return 0;
         }
         else {
-            System.out.println("Main task is done +"+this.money);
             int a = this.money;
             this.money = 0;
             return a;
         }
+    }
+
+    @Override
+    public int getPrice() {
+        int overallPrice=0;
+        for (int i=0;i<this.subTasks.size();i++)
+        {
+            overallPrice+=this.subTasks.get(i).getPrice();
+        }
+        return overallPrice;
     }
 }
 

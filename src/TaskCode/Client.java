@@ -1,4 +1,6 @@
 package TaskCode;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Client extends Person
 {
@@ -9,6 +11,16 @@ public class Client extends Person
     {
         super(name);
         this.task=task;
+    }
+
+    public String getTaskTitle()
+    {
+        return this.task.getTitle();
+    }
+
+    public int getTaskPrice()
+    {
+        return this.task.getPrice();
     }
 
     public int getMoney() {

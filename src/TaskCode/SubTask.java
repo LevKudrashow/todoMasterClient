@@ -55,14 +55,21 @@ public class SubTask implements MoneyTag
             return 0;
         }
         else {
-            System.out.println("Sub task is done +"+this.money);
             int a = this.money;
             this.money = 0;
             return a;
         }
     }
+
+    @Override
+    public int getPrice() {
+        return this.money;
+    }
+
+
 }
 
 interface MoneyTag{
     public int getMoney();
+    public int getPrice();
 }

@@ -6,7 +6,20 @@ import TaskCode.TaskStatuses;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Util{
+interface UtilTasksArchiveInterface
+{
+    public static <T> void ChangeTaskStatus(ArrayList<Task> tasks, ArrayList<Task> archive, Scanner scanner){}
+    public static <T> void MoveToArchive(ArrayList<Task> tasks, ArrayList<Task> archive, int TaskId){}
+    public static <T> void ChangeSubTaskStatus(Task t1, Scanner scanner) {}
+}
+
+interface UtilPaymentInterface
+{
+    public static <T> void ExecuteOrder(Client c1, Master m1){}
+}
+
+abstract class UtilAbsTasksArchiveClass implements UtilTasksArchiveInterface
+{
     public static <T> void ChangeTaskStatus(ArrayList<Task> tasks, ArrayList<Task> archive, Scanner scanner) {
         System.out.print("Choose task: ");
         int TaskId = scanner.nextInt();
@@ -33,7 +46,10 @@ public class Util{
         System.out.print("Choose new status (0 - Not touched, 1 - InProgress, 2 - Done): ");
         t1.setStatus(scanner.nextInt(), Id);
     }
+}
 
+abstract class UtilAbsPaymentClass implements UtilPaymentInterface
+{
     public static <T> void ExecuteOrder(Client c1, Master m1)
     {
         m1.assignTasks(c1);
@@ -42,7 +58,16 @@ public class Util{
         {
             System.out.println(c1.getName()+" has to pay "+p1+" but only has "+c1.getMoney() + " for "+m1.getName()+".");
         }
+        else {
+            System.out.println(c1.getName()+" has paid "+p1+" to "+m1.getName()+" and was left with "+c1.getMoney() +".");
+        }
     }
+}
 
+class UtilTasksArchiveClass extends UtilAbsPaymentClass
+{
+}
 
+class UtilPaymentClass extends UtilAbsPaymentClass
+{
 }
